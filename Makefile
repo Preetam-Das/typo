@@ -21,7 +21,7 @@ dir:
 	mkdir -p $(SRCDIR) $(INCDIR) $(OBJDIR) $(BINDIR) $(DEBUGDIR)
 
 # all
-all: $(BIN)
+all: dir $(BIN)
 debug: $(DBG)
 
 # Debug build
