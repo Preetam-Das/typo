@@ -9,8 +9,35 @@ char *checkarray;
 void showinput(int ch)
 {
     // ignore escape sequences
-    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r' || ch == KEY_BACKSPACE || ch == '\b' || ch == 127)
+    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r')
         wclear(inputsub);
+    else if (ch == KEY_BACKSPACE || ch == '\b' || ch == 127) {
+        wclear(inputsub);
+	/* int x, y, backchar; */
+	/* // moving cursor */
+	/* getyx(inputsub, y, x); */
+	/* // if at the starting pos do nothing */
+	/* if (x == 0 && y == 0) */
+	/*     return; */
+	/* // if at first col move to last line */
+	/* if (x == 0) { */
+	/*     wmove(inputsub, y - 1, inputsub->_maxx); */
+	/*     getyx(inputsub, y, x); */
+	/*     backchar = winch(inputsub) & A_CHARTEXT; */
+	/*     waddch(inputsub, backchar); */
+	/*     wmove(inputsub, y, x); */
+	/*     refresh(); */
+	/*     wrefresh(inputsub); */
+	/* } */
+	/* else { */
+	/*     waddch(inputsub, '\b'); */
+	/*     backchar = winch(inputsub) & A_CHARTEXT; */
+	/*     waddch(inputsub, backchar); */
+	/*     waddch(inputsub, '\b'); */
+	/*     refresh(); */
+	/*     wrefresh(inputsub); */
+	/* } */
+    }
     else
         waddch(inputsub, ch);
     refresh();
@@ -121,6 +148,15 @@ void backspacehandler()
         refresh();
         wrefresh(promptsub);
     }
+
+    // for input window
+    getyx(inputsub, y, x);
+    wmove(inputsub, y, x - 1);
+    waddch(inputsub, ' ');
+    wmove(inputsub, y, x - 1);
+    refresh();
+    wrefresh(inputsub);
+
     // update curpos and checkarray
     curpos--;
     checkarray[curpos/__CHAR_BIT__] &= ~(1 << (curpos % __CHAR_BIT__)); 
