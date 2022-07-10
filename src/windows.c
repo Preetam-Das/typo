@@ -54,7 +54,7 @@ void create_windows()
     wrefresh(input);
 
     // create promptsub
-    promptsub = derwin(prompt, ph - 2, pw - 2, 1, 1);
+    promptsub = derwin(prompt, ph - 2, pw - 4, 1, 2);
     // box(promptsub, 0, 0);
     refresh();
     wrefresh(promptsub);

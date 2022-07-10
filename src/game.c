@@ -1,4 +1,5 @@
 #include "headers.h"
+#include <stdbool.h>
 
 // globals declarations
 int gamerunning = 0;
@@ -21,28 +22,21 @@ void startgame()
     // pause the game
     gamerunning = 0;
     while(!gamerunning) {
+
+        // if window too small
+        resized();
+
         ch = getch();
         if (ch == KEY_RESIZE || ch == ctrl('r')) {
-            move(0, 0);
-            clrtobot();
-            refresh();
 
-            delwin(root);
-            delwin(prompt);
-            delwin(input);
-            delwin(promptsub);
-            delwin(inputsub);
-            refresh();
-
-            create_windows();
-            reloadbuffer();
+            handleresize();
 
             move(LINES - 1, 0);
             clrtoeol();
             printw("Press Enter to start.");
             refresh();
         }
-        if (ch == KEY_ENTER || ch == '\n' || ch == 10) {
+        if ((ch == KEY_ENTER || ch == '\n' || ch == 10) && !resized()) {
             // start game and write stop message
             gamerunning = 1;
             move(LINES - 1, 0);
@@ -57,18 +51,10 @@ void startgame()
 // main gameloop
 void gameloop()
 {
-    while(gamerunning){
+    while(gamerunning) {
         
         // if window too small
-        if (root->_maxx <= 50 || root->_maxy <= 20) {
-
-            clear_windows();
-
-            move(LINES/2, COLS/2 - 18);
-            printw("Window too small. Resize to continue.");
-            refresh();
-            wrefresh(root);
-        }
+        resized();
 
         // handle inputs
         switch((ch = getch())) {
@@ -76,19 +62,7 @@ void gameloop()
             // handle resize
             case ctrl('r'):
             case KEY_RESIZE:
-                move(0, 0);
-                clrtobot();
-                refresh();
-
-                delwin(root);
-                delwin(prompt);
-                delwin(input);
-                delwin(promptsub);
-                delwin(inputsub);
-                refresh();
-
-                create_windows();
-                reloadbuffer();
+                handleresize();
                 startgame();
                 break;
             case ctrl('x'):
@@ -112,6 +86,44 @@ void gameloop()
         }
 
     }
+}
+
+bool resized()
+{
+    // if window too small
+    if (root->_maxx <= 50 || root->_maxy <= 20) {
+
+        clear_windows();
+
+        move(LINES/2, COLS/2 - 18);
+        printw("Window too small. Resize to continue.");
+        refresh();
+        wrefresh(root);
+
+        return true;
+    }
+    return false;
+}
+
+// handle resize
+void handleresize()
+{
+    // clear
+    move(0, 0);
+    clrtobot();
+    refresh();
+
+    // deletewindows
+    delwin(root);
+    delwin(prompt);
+    delwin(input);
+    delwin(promptsub);
+    delwin(inputsub);
+    refresh();
+
+    // reload
+    create_windows();
+    reloadbuffer();
 }
 
 // show result on endgame
