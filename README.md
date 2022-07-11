@@ -32,4 +32,8 @@ Usage: ``bin/typo <file-name>``.
 2. Highlight the currently typed word in yellow.
 3. Show the time passed on the screen.
 4. Implement a built-in dictionary feature which will have many most commonly words used so that the user doesn't have to find a test file on his own.
-5. ...
+5. Improve UI.
+6. Show more statistics at output.
+7. Add functionality to disbale backspace.
+8. Improve ignoring whitespaces, tabs, and newlines.
+9. ...
