@@ -1,6 +1,6 @@
 # Compiler
 CC=gcc
-CFLAGS=-Wall -Wextra
+CFLAGS=-Wall -Wextra -Wl,--no-as-needed
 CLINKS=-lncurses
 
 # Directories
@@ -26,11 +26,11 @@ debug: $(DBG)
 
 # Debug build
 $(DBG): $(OBJ)
-	$(CC) $(CFLAGS) $(CLINKS) -g $^ -o $(DBG)
+	$(CC) $(CFLAGS) -g $^ -o $(DBG) $(CLINKS) 
 
 # Compile objects to elf
 $(BIN): $(OBJ)
-	$(CC) $(CFLAGS) $(CLINKS) $^ -o $(BIN)
+	$(CC) $(CFLAGS) $^ -o $(BIN) $(CLINKS) 
 
 # Compile c to objects
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
