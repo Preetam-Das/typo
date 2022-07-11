@@ -8,6 +8,15 @@ The program should work on on unix and (linux) unix-like based operating systems
 # Dependencies
 gcc, make and ncurses. All of them are mostly pre-installed in all linux based distros.
 
+- Debian and Ubuntu :
+  <br>
+  ``sudo apt install gcc make libncurses5-dev libncursesw5-dev``
+  
+- Arch :
+  <br>
+  ``sudo pacman -S gcc make ncurses``
+
+
 # Install
 To compile the files: ``make all``.
 
