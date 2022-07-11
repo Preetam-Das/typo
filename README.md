@@ -18,11 +18,13 @@ gcc, make and ncurses. All of them are mostly pre-installed in all linux based d
 
 
 # Install
-To compile the files: ``make all``.
+To install: ``make install`` or with sudo privileges ``sudo make install``.
+
+To uninstall: ``make uninstall`` or with sudo privileges ``sudo make uninstall``.
 
 To get rid of the compiled file: ``make clean``.
 
-The executable binary will be in the directory bin: ``bin/typo``.
+The executable binary will be in the directory bin: ``bin/typo``. To manually install just copy the file ``bin/typo`` to a directory which is avaiable in the path: ``cp bin/typo <dir-name>``.
 
 # Running
 Usage: ``bin/typo <file-name>``.
