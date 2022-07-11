@@ -17,12 +17,13 @@ BIN=$(BINDIR)/typo
 DBG=$(DEBUGDIR)/typo
 OBJ=$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
-# Directory structure
-dir:
-	mkdir -p $(SRCDIR) $(INCDIR) $(OBJDIR) $(BINDIR)
 # all
 all: dir $(BIN)
 debug: dir $(DBG)
+
+# Directory structure
+dir:
+	mkdir -p $(SRCDIR) $(INCDIR) $(OBJDIR) $(BINDIR)
 
 # Debug build
 $(DBG): $(OBJ)
