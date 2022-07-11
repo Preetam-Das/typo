@@ -17,6 +17,14 @@ BIN=$(BINDIR)/typo
 DBG=$(DEBUGDIR)/typo
 OBJ=$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
+# install
+install: all
+	cp $(BIN) /usr/bin/
+
+# uninstall
+uninstall:
+	rm /usr/$(BIN)
+
 # all
 all: dir $(BIN)
 debug: dir $(DBG)
