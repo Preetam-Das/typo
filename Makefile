@@ -1,6 +1,7 @@
 # Compiler
 CC=gcc
-CFLAGS=-Wall -Wextra -Wl,--no-as-needed
+CFLAGS=-Wall -Wextra
+LDFLAGS=-Wl,--no-as-needed
 CLINKS=-lncurses
 
 # Directories
@@ -13,28 +14,28 @@ DEBUGDIR=debug
 # Files
 SRC=$(wildcard $(SRCDIR)/*.c)
 BIN=$(BINDIR)/typo
-DBG=$(DEBUGDIR)/main
+DBG=$(DEBUGDIR)/typo
 OBJ=$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 # Directory structure
 dir:
-	mkdir -p $(SRCDIR) $(INCDIR) $(OBJDIR) $(BINDIR) $(DEBUGDIR)
-
+	mkdir -p $(SRCDIR) $(INCDIR) $(OBJDIR) $(BINDIR)
 # all
 all: dir $(BIN)
-debug: $(DBG)
+debug: dir $(DBG)
 
 # Debug build
 $(DBG): $(OBJ)
-	$(CC) $(CFLAGS) -g $^ -o $(DBG) $(CLINKS) 
+	mkdir -p $(DEBUGDIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -g $^ -o $(DBG) $(CLINKS) 
 
 # Compile objects to elf
 $(BIN): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $(BIN) $(CLINKS) 
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $(BIN) $(CLINKS) 
 
 # Compile c to objects
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 # Clean
 clean:
-	rm -f $(BINDIR)/* $(OBJDIR)/* $(DEBUGDIR)/*
+	rm -rf $(BINDIR) $(OBJDIR) $(DEBUGDIR)
