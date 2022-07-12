@@ -27,7 +27,7 @@ To get rid of the compiled file: ``make clean``.
 The executable binary will be in the directory bin: ``bin/typo``. To manually install just copy the file ``bin/typo`` to a directory which is avaiable in the path: ``cp bin/typo <dir-name>``.
 
 # Running
-Usage: ``bin/typo <file-name>``.
+Usage: ``typo <file-name>``.
 
 # Features to implement
 1. Show the words per second(wps) at the output.
