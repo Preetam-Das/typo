@@ -6,10 +6,12 @@ int main(int argc, char *argv[])
 
     // check usage
     if (argc != 2) {
-        fputs("Usage ./typetest <file-name>\n", stdout);
+        fputs("Usage ./typo <filename>\n", stdout);
         exit(0);
     }
-
+	
+	//check if file exists or if it's empty
+	checkfile(argv[1]);
 
     // initializing ncurses
     initscr();
