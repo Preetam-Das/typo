@@ -12,9 +12,6 @@ void loadfile(char *filename)
 
     char *tempbuffer;
     unsigned int tempbufsize;
-
-    //check if file exists or if it's empty
-    checkfile(filename);
     
     // stackoverflow soln to read a file
     fseek(file, 0L, SEEK_END);
@@ -45,21 +42,4 @@ void loadfile(char *filename)
 
     // move cursor to the begginning of the window
     wmove(promptsub, 0, 0);
-}
-
-void checkfile(char *filename)
-{
-    FILE *file;
-    file = fopen(filename, "rb");
-    int ch = fgetc(file);
-    
-    if(file == NULL){
-        printf("File not found.\n");
-        exit 1;
-    }else if(ch == EOF){
-        printf("File is empty.\n");
-        exit 1;
-    }
-    
-    fclose(file);
 }
