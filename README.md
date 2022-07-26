@@ -5,16 +5,26 @@ Currently typo is able to read a file and use it as a test file for the user to 
 
 The program should work on on unix and (linux) unix-like based operating systems. It may or may not work on windows (haven't checked it yet) provided that the dependencies are correctly installed.
 
-# Installation
-To install:
-```
-chmod +x setup.sh
-./setup.sh
-```
+# Dependencies
+gcc, make and ncurses. All of them are mostly pre-installed in all linux based distros.
+
+- Debian and Ubuntu :
+  <br>
+  ``sudo apt install gcc make libncurses5-dev libncursesw5-dev``
+  
+- Arch :
+  <br>
+  ``sudo pacman -S gcc make ncurses``
+
+
+# Install
+To install: ``make install`` or with sudo privileges ``sudo make install``.
 
 To uninstall: ``make uninstall`` or with sudo privileges ``sudo make uninstall``.
 
 To get rid of the compiled file: ``make clean``.
+
+The executable binary will be in the directory bin: ``bin/typo``. To manually install just copy the file ``bin/typo`` to a directory which is avaiable in the path: ``cp bin/typo <dir-name>``.
 
 # Running
 Usage: ``typo <file-name>``.
