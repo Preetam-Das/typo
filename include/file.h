@@ -10,4 +10,7 @@ extern unsigned int buffersize;
 // load file to prompt window
 void loadfile(char *filename);
 
+//check if file exists or if it's empty
+void checkfile(char *filename);
+
 #endif
