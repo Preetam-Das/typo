@@ -12,7 +12,7 @@ void loadfile(char *filename)
 
     char *tempbuffer;
     unsigned int tempbufsize;
-
+    
     // stackoverflow soln to read a file
     fseek(file, 0L, SEEK_END);
     buffersize = ftell(file);
