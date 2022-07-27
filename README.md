@@ -16,9 +16,12 @@ gcc, make and ncurses. All of them are mostly pre-installed in all linux based d
   <br>
   ``sudo pacman -S gcc make ncurses``
 
-
-# Install
-To install: ``make install`` or with sudo privileges ``sudo make install``.
+# Installation
+To install:
+```
+chmod +x setup.sh
+./setup.sh
+```
 
 To uninstall: ``make uninstall`` or with sudo privileges ``sudo make uninstall``.
 
